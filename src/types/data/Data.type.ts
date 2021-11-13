@@ -1,9 +1,12 @@
-export type NodeValueData = [Text, (string | null), number, ValueData?];
+export type NodeValueData = Text[];
+
+export type TextByVariable = {
+    [variable: string]: Text
+}
 
 export type ValueData = {
     name: string,
     value: any,
-    nodes: NodeValueData[],
 }
 
 export type TrackedData = {

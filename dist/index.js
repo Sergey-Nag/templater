@@ -6,4 +6,4 @@ const app = new Templater.default({
     }
 });
 app.run();
-app.data.name = 'Peter';
+// app.data.name = 'Peter';

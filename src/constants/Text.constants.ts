@@ -1,1 +1,0 @@
-export const VARIABLE_REGEXP = /\{\{([\s\S]*?)\}\}/g;

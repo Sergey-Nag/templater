@@ -1,27 +1,33 @@
-import { EventEmitter } from "../modules/EventEmitter";
+import { DataModule } from "../modules/Data.module";
+import { DomModule } from "../modules/Dom.module";
 import { Config } from "../types/templater/Config.type";
-import { NodeValueData } from "../types/templater/data.type";
-import { TemplaterData } from "./Templater.Data";
-import { TemplaterDOM } from "./Templater.DOM";
+export class Templater {
+  public el: string;
+  private isFirstRun: true;
+  // $event: EventEmitterModule;
+  private $data: DataModule;
+  private $dom: DomModule;
+  data: object;
 
-export class Templater extends TemplaterDOM {
-    element: HTMLElement;
-    public el: string;
-    $event: EventEmitter;
+  constructor({ el, data }: Config) {
+    this.el = el;
+    
+    this.$data = new DataModule();
+    this.$dom = new DomModule(el);
 
-    constructor({ el, data }: Config) {
-        super();
-        this.el = el;
-        this.data = this.initData(data);
-        this.element = this.getElement(el);
-        this.$event = EventEmitter.getInstance();
-    }
+    // this.data = this.$data.initData(data, this.$dom.updateNodes);
+    this.data = this.$data.initData(data, this.$dom.updateNodes.bind(this.$dom));
+    // this.element = this.getElement(el);
+    // this.$event = EventEmitterModule.getInstance();
+    this.$dom.run();
+    this.$data.run();
+  }
 
-    run() {
-        this.parseDown();
-        // this.updateNodeValue();
-        // console.log(this.getData());
-        console.log(this.getNodes());
-        
-    }
+  run() {
+
+    // this.parseDown();
+    // this.updateNodeValue();
+    // console.log(this.getData());
+    // console.log(this.getNodes());
+  }
 }
