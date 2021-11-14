@@ -2,8 +2,7 @@ const app = new Templater.default({
     el: '#app',
     data: {
         name: 'Henry',
-        age: 25
+        age: 25,
+        bool: true,
     }
-});
-app.run();
-// app.data.name = 'Peter';
+}).run();

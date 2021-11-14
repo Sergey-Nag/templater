@@ -1,7 +1,7 @@
 export type NodeValueData = Text[];
 
 export type TextByVariable = {
-    [variable: string]: Text
+    [variable: string]: [Text, string];
 }
 
 export type ValueData = {

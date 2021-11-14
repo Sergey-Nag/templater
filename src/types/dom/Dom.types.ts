@@ -1,7 +1,7 @@
 import { NodeValueData } from "../data/Data.type";
 
 export type CollectedVarData = {
-  [variable: string] : Text[];
+  [variable: string] : [Text, string][];
 };
 
 export type CollectedAttrData = {

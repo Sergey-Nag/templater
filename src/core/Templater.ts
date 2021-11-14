@@ -1,33 +1,29 @@
-import { DataModule } from "../modules/Data.module";
-import { DomModule } from "../modules/Dom.module";
+import { DataModule } from "../module/Data.module";
+import { DomModule } from "../module/Dom.module";
+import { TrackedData, ValueData } from "../types/data/Data.type";
 import { Config } from "../types/templater/Config.type";
+
 export class Templater {
   public el: string;
-  private isFirstRun: true;
   // $event: EventEmitterModule;
   private $data: DataModule;
   private $dom: DomModule;
-  data: object;
+  data: TrackedData;
 
   constructor({ el, data }: Config) {
     this.el = el;
     
     this.$data = new DataModule();
-    this.$dom = new DomModule(el);
-
-    // this.data = this.$data.initData(data, this.$dom.updateNodes);
+    this.$dom = new DomModule(el, this.getData.bind(this));
     this.data = this.$data.initData(data, this.$dom.updateNodes.bind(this.$dom));
-    // this.element = this.getElement(el);
-    // this.$event = EventEmitterModule.getInstance();
-    this.$dom.run();
-    this.$data.run();
   }
 
+  getData(key?: string): TrackedData {
+    return key ? this.$data.getTrackedData(key) as any : this.$data.getTrackedData();
+  }
+  
   run() {
-
-    // this.parseDown();
-    // this.updateNodeValue();
-    // console.log(this.getData());
-    // console.log(this.getNodes());
+    this.$dom.run();
+    this.$data.run();
   }
 }
