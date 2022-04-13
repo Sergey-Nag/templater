@@ -11,24 +11,23 @@
   <div id="app">
     <div class="container p-5">
       <div class="row">
-        <div class="col-5 mx-auto">
-          <h1>{{age}} {{ age }} {{age}}{{name}}</h1>
-          <h1>{{ age }}</h1>
+        <div class="col-10 mx-auto" @if="true">
+          <h1>Hi, my name is {{name}}</h1>
+          <h2>and I'm <b>{{ age }}</b> age old</h2>
+          <h3>{{ 'hero ' + name }}</h3>
         </div>
       </div>
-      <div class="row">
+      <div @if="bool" class="row">
         <div class="col">
-          <span>{{age}}</span>
+          <span>{{bool}}</span>
           <span>{{name}}</span>
-          <span>{{name}}</span>
-          <span>{{age}}</span>
-          <span>{{name}}</span>
-          <span>{{age}}</span>
+          <span>{{ 10 *8 }}</span>
+          <span>{{ (age * 0.15).toFixed(5) }}</span>
         </div>
       </div>
     </div>
   </div>
-  <script src="templater.js"></script>
-  <script src="script.js"></script>
+  <script src="./templater.js"></script>
+  <script src="./index.js"></script>
 </body>
 </html>
